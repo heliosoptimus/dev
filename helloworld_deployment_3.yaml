@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: helloworld
+    razee/watch-resource: "lite"
+  name: helloworld
+spec:
+  selector:
+    matchLabels:
+      app: helloworld
+  replicas: 3
+  template:
+    metadata:
+      name: helloworld
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: helloworld
+          image: gcr.io/hello-minikube-zero-install/hello-node
+          imagePullPolicy: Always
