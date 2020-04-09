@@ -20,3 +20,29 @@ spec:
         - name: helloworld
           image: gcr.io/hello-minikube-zero-install/hello-node
           imagePullPolicy: Always
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: helloworld-permanent
+    razee/watch-resource: "lite"
+    deploy.razee.io/Reconcile: "false"
+  name: helloworld-permanent
+spec:
+  selector:
+    matchLabels:
+      app: helloworld-permanent
+  replicas: 1
+  template:
+    metadata:
+      name: helloworld-permanent
+      labels:
+        app: helloworld-permanent
+    spec:
+      containers:
+        - name: helloworld
+          image: gcr.io/hello-minikube-zero-install/hello-node
+          imagePullPolicy: Always
